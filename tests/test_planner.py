@@ -1,5 +1,3 @@
-import pytest
-
 from app.models import Sample, Technician, Equipment, SamplePriority, SampleType, TechnicianSpeciality
 from app.planner import planifyLab
 

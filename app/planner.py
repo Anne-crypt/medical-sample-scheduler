@@ -10,17 +10,6 @@ def add_minutes(time_str: str, minutes: int) -> str:
     t += timedelta(minutes=minutes)
     return t.strftime(TIME_FORMAT)
 
-# def is_available(schedule_list: List[Tuple[str, str]], start: str, end: str) -> bool:
-#     """Check if a given time slot conflicts with a list of (start,end) tuples"""
-#     start_dt = datetime.strptime(start, TIME_FORMAT)
-#     end_dt = datetime.strptime(end, TIME_FORMAT)
-#     for s, e in schedule_list:
-#         s_dt = datetime.strptime(s, TIME_FORMAT)
-#         e_dt = datetime.strptime(e, TIME_FORMAT)
-#         if start_dt < e_dt and end_dt > s_dt:  # overlap
-#             return False
-#     return True
-
 def next_available(start: str, duration: int, schedule_list):
     """Retourne le prochain créneau disponible sur schedule_list"""
     t_start = datetime.strptime(start, TIME_FORMAT)
@@ -95,13 +84,6 @@ def planifyLab(samples: List[Sample],
         conflicts += 1
         
     # --- Compute metrics ---
-    # def add_minutes_diff(start: str, end: str) -> int:
-    #     t_start = datetime.strptime(start, TIME_FORMAT)
-    #     t_end = datetime.strptime(end, TIME_FORMAT)
-    #     return int((t_end - t_start).total_seconds() / 60)
-
-    # total_time = sum(add_minutes_diff(item.startTime, item.endTime) for item in schedule)
-    # efficiency = 100 if schedule else 0
 
     def add_minutes_diff(start: str, end: str) -> int:
         t_start = datetime.strptime(start, TIME_FORMAT)
