@@ -3,19 +3,16 @@ from app.planner import planifyLab
 
 # --- Example data ---
 samples = [
-    Sample(id="S001", type=SampleType.BLOOD, priority=SamplePriority.STAT, analysisTime=30, arrivalTime="09:00", patientId="P123"),
-    Sample(id="S002", type=SampleType.URINE, priority=SamplePriority.URGENT, analysisTime=20, arrivalTime="09:15", patientId="P124"),
-    Sample(id="S003", type=SampleType.BLOOD, priority=SamplePriority.ROUTINE, analysisTime=45, arrivalTime="10:00", patientId="P125"),
+    Sample(id="S001", type=SampleType.BLOOD, priority=SamplePriority.URGENT, analysisTime=45, arrivalTime="09:00", patientId="P001"),
+    Sample(id="S002", type=SampleType.BLOOD, priority=SamplePriority.STAT, analysisTime=30, arrivalTime="09:30", patientId="P002"),
 ]
 
 technicians = [
-    Technician(id="T1", name="Alice Martin", speciality=TechnicianSpeciality.BLOOD, startTime="08:00", endTime="17:00"),
-    Technician(id="T2", name="Bob Dupont", speciality=TechnicianSpeciality.URINE, startTime="08:00", endTime="17:00"),
+    Technician(id="T001", name="Alice Martin", speciality=TechnicianSpeciality.BLOOD, startTime="08:00", endTime="17:00"),
 ]
 
 equipments = [
-    Equipment(id="E1", name="Blood Analyzer", type=SampleType.BLOOD),
-    Equipment(id="E2", name="Urine Analyzer", type=SampleType.URINE),
+    Equipment(id="E001", name="Blood Analyzer", type=SampleType.BLOOD),
 ]
 
 # --- Call the function ---
