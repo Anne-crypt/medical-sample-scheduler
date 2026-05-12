@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 from enum import Enum, auto
 
+
 class EquipmentType(Enum):
     BLOOD = auto()
     CHEMISTRY = auto()
@@ -16,5 +17,9 @@ class Equipment:
     type: EquipmentType
     compatibleTypes: list[str]
     capacity: int
-    maintenanceWindow: str
-    cleaningTime: int
+    maintenanceWindow: list[tuple[str, str]] = None
+    cleaningTime: int = 0
+
+    def __post_init__(self):
+        if self.maintenanceWindow is None:
+            self.maintenanceWindow = []

@@ -3,17 +3,18 @@ from datetime import datetime
 # from enum import Enum, auto
 
 
-# class TechnicianSpeciality(Enum):
+# class Technicianspecialty(Enum):
 #     BLOOD = auto()
 #     URINE = auto()
 #     TISSUE = auto()
 #     GENERAL = auto()
 
+
 @dataclass
 class Technician:
     id: str
     name: str
-    speciality: list[str]
+    specialty: list[str]
     efficiency: float
     analysisType: str
     startTime: str
