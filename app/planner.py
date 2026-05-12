@@ -43,6 +43,8 @@ def planifyLab(samples: List[Sample],
     tech_schedule = {t.id: [] for t in technicians}  # list of (start,end)
     eq_schedule = {e.id: [] for e in equipments}    # list of (start,end)
 
+    conflicts = 0
+
     for sample in samples_sorted:
         # --- Find a compatible technician available ---
         assigned = False
@@ -75,13 +77,19 @@ def planifyLab(samples: List[Sample],
                 if assigned:
                     break
         # If no assignment possible, skip (could add conflicts count later)
+    if not assigned:
+        conflicts += 1
         
     # --- 3️⃣ Compute metrics ---
-    total_time = sum(s.analysisTime for s in samples_sorted)
-    # efficiency = total analysis time / total time (using 8h = 480 min as max)
-    efficiency = total_time / 480 * 100
-    conflicts = 0  # no conflict detection yet
+    def add_minutes_diff(start: str, end: str) -> int:
+        t_start = datetime.strptime(start, TIME_FORMAT)
+        t_end = datetime.strptime(end, TIME_FORMAT)
+        return int((t_end - t_start).total_seconds() / 60)
 
-    metrics = Metrics(totalTime=480, efficiency=efficiency, conflicts=conflicts)
+    total_time = sum(add_minutes_diff(item.startTime, item.endTime) for item in schedule)
+    efficiency = 100 if schedule else 0
+    conflicts = 0
+
+    metrics = Metrics(totalTime=total_time, efficiency=efficiency, conflicts=conflicts)
 
     return schedule, metrics
